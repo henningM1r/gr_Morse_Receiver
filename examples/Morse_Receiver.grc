@@ -60,7 +60,7 @@ blocks:
     comment: 'to match signals found
 
       in spectrum analysers'
-    value: '-500'
+    value: '-602.5'
   states:
     bus_sink: false
     bus_source: false
@@ -215,14 +215,14 @@ blocks:
       Morse signal'
     decim: '8'
     gain: '15'
-    high_cutoff_freq: '875'
+    high_cutoff_freq: '805'
     interp: '1'
-    low_cutoff_freq: '425'
+    low_cutoff_freq: '400'
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: '425'
+    width: '400'
     win: window.WIN_BLACKMAN
   states:
     bus_sink: false
@@ -977,14 +977,14 @@ blocks:
     width8: '1'
     width9: '1'
     ylabel: Amplitude
-    ymax: '2.5'
+    ymax: '6'
     ymin: '-0.1'
     yunit: '""'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1232, 716.0]
+    coordinate: [1184, 716.0]
     rotation: 0
     state: true
 - name: qtgui_waterfall_sink_x_0
@@ -1121,7 +1121,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1232, 836.0]
+    coordinate: [1184, 836.0]
     rotation: 0
     state: enabled
 

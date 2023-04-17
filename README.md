@@ -14,7 +14,6 @@ A supplementary tool is provided in the `python` folder:
 ### Requirements
 The Morse receiver was tested with:
 + gnuradio & GNURadio Companion 3.10.1.1 (Linux)
-+ Radioconda 2023.02.24 & gnuradio & GNURadio Companion 3.10.5.1 (Windows)
 + Python 3.10.6
     + PyQt5 5.15.7
     + pyzmq 22.2.1
@@ -32,9 +31,10 @@ The Morse receiver was tested with:
 + Ensure that the raw Morse signal reception is good enough, e.g. using gqrx or another signal analysis tool. It should reach at least at approximately -95dB or better.
 + To start the Morse receiver, open the flowchart in `/examples/Morse_receiver.grc` with GNURadio Companion
     + Press `run` button.
-    + Set the frequency slider values so that stronger signals in the waterfall chart get close to 0.00 (slightly left or right of it). Use the Mouse for the rough frequency adjustment.
+    + Set the frequency slider values so that stronger signals in the waterfall chart get close to 0.00 (so that it begins either slightly left or right of it). Use the Mouse for the rough frequency adjustment.
         + You can further adjust and fine-tune the signal with the mouse wheel.
-    + Adjust the Gain to boost the signal (and noise) strength.
+        + You can also zoom into the waterfall plot.
+    + Adjust the Gain slider values to boost the signal (and noise) strength.
     + Adjust the low_thres and high_thres slider values, if needed.
     + Adjust the loudness, especially if the audio tone is clipped.
     + After picking a good signal, the GNURadio Companion debug console should show debug messages each for each received symbol.
@@ -43,11 +43,11 @@ The Morse receiver was tested with:
     + Change to your cloned repository.
     + Run DecodeMorse with ```python3 ./python/DecodeMorse.py```.
     + The terminal should show the decoded ASCII symbols.
-    + NOTE: Morse messages are is often short and technical. The message "TEST" in the decoder output is a good indicator that decoding worked
-    + NOTE: sometimes a bit can not be decoded correctly, e.g. due to bad reception. Then the decoder will produce
+    + NOTE: Morse messages are is often short and technical. The messages "TEST", or "CQ", in the decoder output are a good indicator that decoding worked well.
+    + NOTE: sometimes a symbol can not be decoded correctly, e.g. due to bad reception. Then the decoder will produce
     + NOTE: Some Morse signals tend to fade in and out, so that some symbols might get lost sometimes.
     + NOTE: Interfering Morse signals might disturb the decoder.
-    + NOTE: The transmission speed of Morse symbols (and pauses) varies among the senders, please feel free to optimize the Morse decoder and other reception parameters according to your needs.
+    + NOTE: The transmission speed of Morse symbols (and pauses) varies among the senders. Feel free to optimize the Morse decoder and other reception parameters according to your needs.
 
 ### REMARKS
 + This project has __not__ been tested with other SDR receivers.
