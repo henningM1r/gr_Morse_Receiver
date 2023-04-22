@@ -27,7 +27,6 @@ The Morse receiver was tested with:
     + MS Windows 11
 
 ### Instructions/Setup
-
 #### Signal Reception with SDR
 + Set up your SDR with your computer.
 + Ensure that the raw Morse signal reception is good enough, e.g. using gqrx or another signal analysis tool. It should reach at least at approximately -95dB or better.
@@ -53,11 +52,11 @@ The Morse receiver was tested with:
     + Change to your cloned repository.
     + Run DecodeMorse with ```python3 ./python/DecodeMorse.py```.
     + The terminal should show the decoded ASCII symbols.
-    + NOTE: Morse messages are is often short and technical. The messages "TEST", or "CQ", in the decoder output are a good indicator that decoding worked well.
-    + NOTE: sometimes a symbol can not be decoded correctly, e.g. due to bad reception. Then the decoder will produce
+    + NOTE: Morse messages are often shortened and technical. The messages "TEST", or "CQ", in the decoder output are a good indicator that decoding worked sufficiently well.
+    + NOTE: Sometimes a symbol can not be decoded correctly, e.g. due to bad reception. Then the decoder will produce decoding errors.
     + NOTE: Some Morse signals tend to fade in and out, so that some symbols might get lost sometimes.
     + NOTE: Interfering Morse signals might disturb the decoder.
-    + NOTE: The transmission speed of Morse symbols (and pauses) varies among the senders. Feel free to optimize the Morse decoder and other reception parameters according to your needs.
+    + NOTE: The transmission speed of Morse symbols (and pauses) varies among different senders. Feel free to optimize the Morse decoder timing and other reception parameters according to your needs.
 
 ### REMARKS
 + This project has __not__ been tested with other SDR receivers.
