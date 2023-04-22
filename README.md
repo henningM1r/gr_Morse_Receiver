@@ -31,13 +31,21 @@ The Morse receiver was tested with:
 + Ensure that the raw Morse signal reception is good enough, e.g. using gqrx or another signal analysis tool. It should reach at least at approximately -95dB or better.
 + To start the Morse receiver, open the flowchart in `/examples/Morse_receiver.grc` with GNURadio Companion
     + Press `run` button.
-    + Set the frequency slider values so that stronger signals in the waterfall chart get close to 0.00 (so that it begins either slightly left or right of it). Use the Mouse for the rough frequency adjustment.
-        + You can further adjust and fine-tune the signal with the mouse wheel.
+    + Set the CW band entry frequency if needed in the edit box entitled _CW band entry frequency_.
+    + Set the _frequency_ slider values so that stronger signals in the waterfall chart get close to 0.00 (so that it begins either slightly left or right of it). Use the mouse to drag the slider for the rough frequency adjustment.
+        + You can further adjust and fine-tune the frequency with the mouse wheel, to improve signal reception.
         + You can also zoom into the waterfall plot.
-    + Adjust the Gain slider values to boost the signal (and noise) strength.
-    + Adjust the low_thres and high_thres slider values, if needed.
-    + Adjust the loudness, especially if the audio tone is clipped.
-    + After picking a good signal, the GNURadio Companion debug console should show debug messages each for each received symbol.
+    + Adjust the gain slider values to boost the signal (and noise) strength.
+    + Adjust the _low_thres_ and _high_thres_ slider values, if needed.
+    + Adjust the _loudness_, especially if the audio tone is clipped.
+    + The theshold will be shown in the time signal plot.
+    + Activate checkbox _print durations of ON_.
+    + Set the _short mark_ slider, _long mark_ slider and _tolerance_ sliders, accordingly.
+    + Deactivate checkbox _print durations of ON_.
+    + Activate checkbox: _print durations of OFF_.
+    + Set the _element space_ slider, _letter space_ slider and _word space_ slider accordingly.
+    + Deactivate checkbox: _print durations of OFF_.
+    + Activate checkbox print symbols to show the detected Morse symbols. After picking a good signal, the GNURadio Companion debug console should show debug messages each for each received symbol (streams of . and _).
 
 + Next, open a terminal.
     + Change to your cloned repository.
