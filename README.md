@@ -9,7 +9,7 @@ The __flowgraph__ is provided in the `examples` folder:
     + for SDR reception
 
 A supplementary tool is provided in the `python` folder:
-+ `DecodeMorse.py`decodes the received symbols from a specified ZMQ server upon receiving them. It shows the decoded ASCII symbols.
++ `DecodeMorse.py` decodes the received symbols from a specified ZMQ server upon receiving them. It shows the decoded ASCII symbols.
 
 ### Requirements
 The Morse receiver was tested with:
@@ -17,13 +17,14 @@ The Morse receiver was tested with:
 + Radioconda 2023.02.24 & gnuradio & GNURadio Companion 3.10.5.1 (Windows)
 + Python 3.10.6
     + PyQt5 5.15.7
-    + pyzmq 22.2.1
+    + pyzmq 23.1.0
     + gnuradio-osmosdr 0.2.0
 + An SDR receiver capable of receiving in the range of at least 1 kHz - 1 MHz, e.g. an _Airspy Discovery HF+_ is configured and used for this project.
 + An antenna that provides sufficiently clear Morse signals, e.g. a simple _YouLoop_ loop antenna was used for this project. Indoor reception should probably be possible. You should mount the antenna close to a window or outside.
 + The user might also need some antenna cables and adapters to connect the SDR with the antenna.
 + This project has been successfully tested in:
     + Ubuntu 22.04.2 LTS
+    + MS Windows 11
 
 ### Instructions/Setup
 
@@ -36,17 +37,17 @@ The Morse receiver was tested with:
     + Set the _frequency_ slider values so that stronger signals in the waterfall chart get close to 0.00 (so that it begins either slightly left or right of it). Use the mouse to drag the slider for the rough frequency adjustment.
         + You can further adjust and fine-tune the frequency with the mouse wheel, to improve signal reception.
         + You can also zoom into the waterfall plot.
-    + Adjust the gain slider values to boost the signal (and noise) strength.
+    + Adjust the _gain_ slider values to boost or dampen the signal (and noise) strength.
     + Adjust the _low_thres_ and _high_thres_ slider values, if needed.
+    + The theshold limits will be shown in the time signal plot.
     + Adjust the _loudness_, especially if the audio tone is clipped.
-    + The theshold will be shown in the time signal plot.
-    + Activate checkbox _print durations of ON_.
+    + Activate checkbox _print durations of ON_ to view the signal durations during OFF.
     + Set the _short mark_ slider, _long mark_ slider and _tolerance_ sliders, accordingly.
     + Deactivate checkbox _print durations of ON_.
-    + Activate checkbox: _print durations of OFF_.
+    + Activate checkbox _print durations of OFF_ to view the signal durations during OFF.
     + Set the _element space_ slider, _letter space_ slider and _word space_ slider accordingly.
-    + Deactivate checkbox: _print durations of OFF_.
-    + Activate checkbox print symbols to show the detected Morse symbols. After picking a good signal, the GNURadio Companion debug console should show debug messages each for each received symbol (streams of . and _).
+    + Deactivate checkbox _print durations of OFF_.
+    + Activate checkbox _print symbols_ to show the detected Morse symbols. After picking a good signal, the GNURadio Companion debug console should show debug messages each for each received symbol (streams of . and _).
 
 + Next, open a terminal.
     + Change to your cloned repository.
@@ -61,7 +62,7 @@ The Morse receiver was tested with:
 ### REMARKS
 + This project has __not__ been tested with other SDR receivers.
 + This project has __not__ been tested with a receiver setup using a sound card.
-+ This project has __not__ been tested with other antennas
++ This project has __not__ been tested with other antennas.
 + A Low Noise Amplifier (LNA) is not needed.
 + Additional resilience of the Decoder has __not__ been implemented yet.
 + The maintainer is only a hobbyist, __not__ a Morse professional ;-).
