@@ -57,13 +57,13 @@ morse_dict = {
     "_": "..__._",
     "&": "._...",
     "CH": "____",
-    "KA": "_._._",   # Spruchanfang
-    "BT": "_..._",   # Pause/Trennung
-    "AR": "._._.",   # Spruchende
-    "VE": "..._.",   # verstanden
-    "SK": "..._._.", # Verkehrsende
-    "AS": "._...",   # warten
-    "KN": "_.__.",   # senden für bestimmte Station
+    "KA": "_._._",   # begin
+    "BT": "_..._",   # pause / separation
+    "AR": "._._.",   # end
+    "VE": "..._.",   # understood
+    "SK": "..._._.", # traffic end
+    "AS": "._...",   # wait
+    "KN": "_.__.",   # send to specific station
 }
 
 morse_swap_dict = {v: k for k, v in morse_dict.items()}
