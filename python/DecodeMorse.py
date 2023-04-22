@@ -57,23 +57,21 @@ morse_dict = {
     "_": "..__._",
     "&": "._...",
     "CH": "____",
-    "KA": "_._._",   # start of message
-    "BT": "_..._",   # pause/separation
-    "AR": "._._.",   # end of message
-    "VE": "..._.",   # understood
-    "SK": "..._._.", # end of traffic
-    "AS": "._...",   # wait
-    "KN": "_.__.",   # send to particular station
+    "KA": "_._._",   # Spruchanfang
+    "BT": "_..._",   # Pause/Trennung
+    "AR": "._._.",   # Spruchende
+    "VE": "..._.",   # verstanden
+    "SK": "..._._.", # Verkehrsende
+    "AS": "._...",   # warten
+    "KN": "_.__.",   # senden für bestimmte Station
 }
 
-# to get the ASCII symbols from a received Morse symbol
 morse_swap_dict = {v: k for k, v in morse_dict.items()}
 
 
 def decode_morse_stream(morse_stream):
     symbol = ''.join(morse_stream)
 
-    # look up Morse symbols
     if symbol in morse_swap_dict:
         print(morse_swap_dict[symbol], end="")
 
@@ -89,7 +87,6 @@ def consumer():
     
     morse_stream = []
     count = 0
-
     while True:
         data = consumer_receiver.recv()
         received_msg = data.decode('ascii')[3:]
@@ -113,7 +110,6 @@ def consumer():
             count = 0
             print("")
 
-        # line-break
         if count == 20:
             print("")
             count = 0

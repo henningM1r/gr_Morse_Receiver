@@ -33,25 +33,133 @@ options:
     state: enabled
 
 blocks:
-- name: freq_morse
+- name: band_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '7000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 116.0]
+    rotation: 0
+    state: true
+- name: check_box_print_0duration
+  id: variable_qtgui_msgcheckbox
+  parameters:
+    cellalignment: '1'
+    comment: 'enable printing the duration
+
+      of OFF signal in the console
+
+      of GNURadio Companion'
+    gui_hint: (22,2)
+    initPressed: 'False'
+    label: Print durations of OFF
+    outputmsgname: value
+    pressed: 'True'
+    released: 'False'
+    type: bool
+    value: 'False'
+    verticalalignment: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1832, 796.0]
+    rotation: 0
+    state: true
+- name: checkbox_print_1duration
+  id: variable_qtgui_msgcheckbox
+  parameters:
+    cellalignment: '1'
+    comment: 'enable printing the duration
+
+      of ON signal in the console
+
+      of GNURadio Companion'
+    gui_hint: (22,1)
+    initPressed: 'False'
+    label: Print durations of ON
+    outputmsgname: value
+    pressed: 'True'
+    released: 'False'
+    type: bool
+    value: 'False'
+    verticalalignment: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1832, 556.0]
+    rotation: 0
+    state: true
+- name: checkbox_print_symbols
+  id: variable_qtgui_msgcheckbox
+  parameters:
+    cellalignment: '1'
+    comment: 'enable printing received
+
+      symbols in the console
+
+      of GNURadio Companion'
+    gui_hint: (22,0)
+    initPressed: 'False'
+    label: Print Symbols
+    outputmsgname: value
+    pressed: 'True'
+    released: 'False'
+    type: bool
+    value: 'False'
+    verticalalignment: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1832, 324.0]
+    rotation: 0
+    state: true
+- name: element_space
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
-    label: Frequency
+    gui_hint: (19,0,1,3)
+    label: element_space
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
-    start: '7000000'
+    start: '80'
     step: '1'
-    stop: '7040000'
-    value: '7000000'
+    stop: '700'
+    value: '270'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [278, 9]
+    coordinate: [1344, 588.0]
+    rotation: 0
+    state: enabled
+- name: freq_morse
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: (3,0,1,3)
+    label: Frequency
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '100000'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1216, 4.0]
     rotation: 0
     state: enabled
 - name: freq_shift_corr
@@ -65,14 +173,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 140.0]
+    coordinate: [304, 12.0]
     rotation: 0
     state: true
 - name: gain
   id: variable_qtgui_range
   parameters:
     comment: signal gain
-    gui_hint: ''
+    gui_hint: (4,0,1,3)
     label: Gain
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -86,49 +194,141 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [416, 12.0]
+    coordinate: [1088, 4.0]
     rotation: 0
     state: enabled
 - name: hi_thres
   id: variable_qtgui_range
   parameters:
     comment: thresholder high
-    gui_hint: ''
+    gui_hint: (10,0,1,3)
     label: high_thres
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0.01'
-    step: '0.01'
-    stop: '10'
+    step: '0.1'
+    stop: '20'
     value: '1'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 12.0]
+    coordinate: [1336, 4.0]
+    rotation: 0
+    state: enabled
+- name: label1
+  id: variable_qtgui_label
+  parameters:
+    comment: ''
+    formatter: None
+    gui_hint: (23, 0)
+    label: 'Note: Please view detected Morse symbols in gr-companion console (set
+      -print symbols- checked)'
+    type: string
+    value: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1488, 724.0]
+    rotation: 0
+    state: true
+- name: label2
+  id: variable_qtgui_label
+  parameters:
+    comment: ''
+    formatter: None
+    gui_hint: (24, 0)
+    label: 'Note: Please run DecodeMorse.py in a terminal to view decoded Morse symbols
+      as ASCII symbols'
+    type: string
+    value: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1488, 812.0]
+    rotation: 0
+    state: true
+- name: label3
+  id: variable_qtgui_label
+  parameters:
+    comment: ''
+    formatter: None
+    gui_hint: (2,0,1,3)
+    label: 'CW-bands: 7000000, 14000000, 18068000, 21000000'
+    type: string
+    value: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 140.0]
+    rotation: 0
+    state: true
+- name: letter_space
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: (20,0,1,3)
+    label: letter_space
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '200'
+    step: '1'
+    stop: '1600'
+    value: 270*3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1480, 588.0]
     rotation: 0
     state: enabled
 - name: lo_thres
   id: variable_qtgui_range
   parameters:
     comment: thresholder low
-    gui_hint: ''
+    gui_hint: (11,0,1,3)
     label: low_thres
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0.01'
     step: '0.01'
-    stop: '1'
-    value: '0.1'
+    stop: '10'
+    value: '0.07'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [536, 12.0]
+    coordinate: [1456, 4.0]
+    rotation: 0
+    state: enabled
+- name: long_mark
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: (18,0,1,3)
+    label: long_mark
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '200'
+    step: '1'
+    stop: '1600'
+    value: 270*3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1480, 460.0]
     rotation: 0
     state: enabled
 - name: loudness
@@ -137,7 +337,7 @@ blocks:
     comment: 'avoid listening to
 
       loud clipped signals'
-    gui_hint: ''
+    gui_hint: (0,0,1,3)
     label: loudness
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -151,9 +351,45 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [784, 12.0]
+    coordinate: [448, 12.0]
     rotation: 0
     state: enabled
+- name: print_0duration
+  id: variable
+  parameters:
+    comment: ''
+    value: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1856, 732.0]
+    rotation: 0
+    state: true
+- name: print_1duration
+  id: variable
+  parameters:
+    comment: ''
+    value: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1856, 492.0]
+    rotation: 0
+    state: true
+- name: print_symbols
+  id: variable
+  parameters:
+    comment: ''
+    value: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1856, 260.0]
+    rotation: 0
+    state: true
 - name: samp_rate
   id: variable
   parameters:
@@ -163,16 +399,127 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [181, 9]
+    coordinate: [200, 12.0]
     rotation: 0
     state: enabled
+- name: short_mark
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: (17,0,1,3)
+    label: short_mark
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '80'
+    step: '1'
+    stop: '700'
+    value: '270'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1344, 460.0]
+    rotation: 0
+    state: enabled
+- name: tolerance
+  id: variable_qtgui_range
+  parameters:
+    comment: duration tolerance range
+    gui_hint: (15,0,1,3)
+    label: tolerance
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '50'
+    step: '1'
+    stop: '200'
+    value: '100'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1600, 4.0]
+    rotation: 0
+    state: enabled
+- name: word_space
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: (21,0,1,3)
+    label: word_space
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '800'
+    step: '1'
+    stop: '8000'
+    value: 270*7
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1600, 588.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: hi_thres
+    comment: 'high threshold line
+
+      in time plot'
+    freq: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_CONST_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [480, 1308.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: lo_thres
+    comment: 'low threshold line
+
+      in time plot'
+    freq: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_CONST_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [480, 1468.0]
+    rotation: 0
+    state: true
 - name: analog_simple_squelch_cc_0_0
   id: analog_simple_squelch_cc
   parameters:
     affinity: ''
     alias: ''
     alpha: '1'
-    comment: 'filter out low noise
+    comment: 'filter out very low noise
 
       below given threshold'
     maxoutbuf: '0'
@@ -182,7 +529,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 444.0]
+    coordinate: [648, 540.0]
     rotation: 0
     state: enabled
 - name: audio_sink_0
@@ -190,7 +537,9 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    comment: "listening live to \nMorse symbols"
+    comment: 'listening live to received
+
+      Morse tones'
     device_name: ''
     num_inputs: '1'
     ok_to_block: 'True'
@@ -199,7 +548,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 636.0]
+    coordinate: [728, 788.0]
     rotation: 0
     state: enabled
 - name: band_pass_filter_0
@@ -228,7 +577,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 396.0]
+    coordinate: [408, 492.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_squared_0
@@ -244,7 +593,79 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [232, 720.0]
+    coordinate: [272, 888.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_real_0
+  id: blocks_complex_to_real
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 792.0]
+    rotation: 0
+    state: enabled
+- name: blocks_msgpair_to_var_0
+  id: blocks_msgpair_to_var
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: write to variable
+    target: print_symbols
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2096, 364.0]
+    rotation: 0
+    state: true
+- name: blocks_msgpair_to_var_0_0
+  id: blocks_msgpair_to_var
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: write to variable
+    target: print_1duration
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2104, 596.0]
+    rotation: 0
+    state: true
+- name: blocks_msgpair_to_var_0_0_0
+  id: blocks_msgpair_to_var
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: write to variable
+    target: print_0duration
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2104, 836.0]
+    rotation: 0
+    state: true
+- name: blocks_msgpair_to_var_0_1
+  id: blocks_msgpair_to_var
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: write to variable
+    target: band_freq
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [920, 52.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_xx_0
@@ -252,7 +673,9 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    comment: ''
+    comment: 'Scale signal according
+
+      to gain slider'
     const: gain
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -262,7 +685,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [864, 452.0]
+    coordinate: [880, 548.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_xx_0_0
@@ -280,9 +703,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 636.0]
+    coordinate: [496, 788.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_threshold_ff_0
   id: blocks_threshold_ff
   parameters:
@@ -302,14 +725,57 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 812.0]
+    coordinate: [288, 1108.0]
     rotation: 0
     state: true
-- name: epy_block_0_0
+- name: epy_block_0
   id: epy_block
   parameters:
-    ASCII_pause: '650'
-    OOK_pause: '240'
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\n\nclass blk(gr.sync_block):\n\n    def __init__(self,\
+      \ threshold=0.0, mode=0, coeff=0.15):\n        gr.sync_block.__init__(\n   \
+      \         self,\n            name='Envelope Detector',\n            in_sig=[np.float32],\n\
+      \            out_sig=[np.float32]\n        )\n        self.ry = 0\n        self.threshold\
+      \ = threshold\n        self.mode = mode\n        self.coeff = coeff\n\n\n  \
+      \  def work(self, input_items, output_items):\n        output_items[0][:] =\
+      \ input_items[0]\n\n        buf = [0] * len(input_items[0])\n        a0 = self.coeff\n\
+      \        b1 = 1 - a0\n\n        for i in range(0, len(input_items[0])):\n  \
+      \          if self.mode == 1:\n                buf[i] = abs(input_items[0][i])\n\
+      \            else:\n                if input_items[0][i] > self.threshold:\n\
+      \                    buf[i] = input_items[0][i]\n                else:\n   \
+      \                 buf[i] = 0\n\n        for i in range(0, len(input_items[0])):\n\
+      \            if i == 0:\n                output_items[0][i] = a0*buf[i] + b1*self.ry\n\
+      \            else: # i >= 1 \n                output_items[0][i] = a0*buf[i]\
+      \ + b1*output_items[0][i-1]\n\n        i = len(output_items[0]) - 1\n      \
+      \  self.ry = output_items[0][i]\n\n        return len(output_items[0])\n"
+    affinity: ''
+    alias: ''
+    coeff: '0.2'
+    comment: 'smooth signal with
+
+      an envelope detector'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mode: '0'
+    threshold: '0.0'
+  states:
+    _io_cache: ('Envelope Detector', 'blk', [('threshold', '0.0'), ('mode', '0'),
+      ('coeff', '0.15')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['coeff',
+      'mode', 'threshold'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 868.0]
+    rotation: 0
+    state: true
+- name: epy_block_0_0_0
+  id: epy_block
+  parameters:
+    ASCII_pause: long_mark
+    OOK_pause: short_mark
     _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
       \ GRC will instantiate the first class it finds\nto get ports and parameters\
       \ of your block. The arguments to __init__  will\nbe the parameters. All of\
@@ -318,19 +784,21 @@ blocks:
       \ status\n_num_ones  = 0\n\n# counts number of zeros of current status\n_num_zeros\
       \ = 0\n\n# stores current on/off status\n_sync = -1\n\n\nclass blk(gr.sync_block):\n\
       \n    def __init__(self, OOK_pause=270, ASCII_pause=825, short_sym=280, long_sym=870,\
-      \ break_pause=1200, tolerance=40, debug=False, verbose=True):\n\n        gr.sync_block.__init__(\n\
-      \            self,\n            name='Morse Decoder',\n            in_sig=[np.float32],\n\
-      \            out_sig=[np.float32]\n        )\n        \n        # durations\
-      \ of the symbols and pauses\n        self.tolerance   = tolerance\n        self.OOK_pause\
+      \ break_pause=1200, tolerance=40, print_symbols=True, print_1duration=False,\
+      \ print_0duration=False):\n\n        gr.sync_block.__init__(\n            self,\n\
+      \            name='Morse Decoder',\n            in_sig=[np.float32],\n     \
+      \       out_sig=[np.float32]\n        )\n        \n        # durations of the\
+      \ symbols and pauses\n        self.tolerance   = tolerance\n        self.OOK_pause\
       \   = OOK_pause\n        self.ASCII_pause = ASCII_pause\n        self.short_sym\
       \   = short_sym\n        self.long_sym    = long_sym\n        self.break_pause\
-      \ = break_pause\n\n        # verbose/debug output\n        self.debug      \
-      \ = debug\n        self.verbose     = verbose\n\n        if self.verbose ==\
-      \ True:\n            print(\"tolerance: \", self.tolerance)\n            print(\"\
-      OOK pause: \", self.OOK_pause)\n            print(\"ASCII pause: \", self.ASCII_pause)\n\
-      \            print(\"short sym: \", self.short_sym)\n            print(\"long\
-      \ sym: \", self.long_sym)\n            print(\"break: \", self.break_pause)\n\
-      \n        # output message\n        self.message_port_register_out(pmt.intern('msg_out'))\n\
+      \ = break_pause\n\n        # verbose output\n        self.print_symbols   =\
+      \ print_symbols\n        self.print_1duration = print_1duration\n        self.print_0duration\
+      \ = print_0duration\n\n        if self.print_symbols == True:\n            print(\"\
+      short mark (.): \", self.short_sym)\n            print(\"long mark (_): \",\
+      \ self.long_sym)\n            print(\"element-space (^)\", self.OOK_pause)\n\
+      \            print(\"letter-space (~): \", self.ASCII_pause)\n            print(\"\
+      word-space (;): \", self.break_pause)\n            print(\"tolerance: \", self.tolerance)\n\
+      \            \n\n        # output message\n        self.message_port_register_out(pmt.intern('msg_out'))\n\
       \        \n\n    def work(self, input_items, output_items):\n        global\
       \ _num_zeros\n        global _num_ones\n        global _sync\n\n        inp\
       \ = input_items[0]\n\n        for idx in range(len(inp)):\n            ch =\
@@ -338,82 +806,84 @@ blocks:
       \          else: # ch == 0\n                _num_zeros += 1\n\n            #\
       \ out of sync status\n            if _sync == -1:\n                _num_zeros\
       \ = 0\n                _num_ones = 0\n\n                if ch == 0:\n      \
-      \              _sync = 0\n                    if self.debug:\n             \
-      \           print(\"sync 0\")\n                \n                elif ch ==\
-      \ 1:\n                    _sync = 1\n                    if self.debug:\n  \
-      \                      print(\"sync 1\")\n            \n            # status:\
-      \ currently off\n            elif _sync == 0:\n                # status remains\
-      \ identical\n                if ch == 0:\n                    pass\n       \
-      \         \n                elif ch == 1:\n                    _sync = 1\n \
-      \                   # WARN: this print is very slow, and may cause GNURadio\
-      \ to crash\n                    #print(f\"sync 1: #zeros: {_num_zeros}\")\n\n\
-      \                    # detect OOK pause\n                    if (_num_zeros\
-      \ >= self.OOK_pause - self.tolerance and\n                        _num_zeros\
-      \ <= self.OOK_pause + self.tolerance):\n                        \n         \
-      \               if self.debug:\n                            #print(f\"OOK pause\"\
-      )\n                            pass\n\n                        # marking detected\
-      \ OOK_pause\n                        key = pmt.intern(\" \")\n             \
-      \           value = pmt.intern(\"OOK_pause\")\n                        self.add_item_tag(0,\n\
+      \              _sync = 0\n                \n                elif ch == 1:\n\
+      \                    _sync = 1\n            \n            # status: currently\
+      \ off\n            elif _sync == 0:\n                # status remains identical\n\
+      \                if ch == 0:\n                    pass\n                \n \
+      \               elif ch == 1:\n                    _sync = 1\n             \
+      \       # WARN: this print is very slow, and may cause GNURadio to crash\n \
+      \                   if self.print_0duration:\n                        print(f\"\
+      #zeros: {_num_zeros}\")\n\n                    # detect OOK pause\n        \
+      \            if (_num_zeros >= self.OOK_pause - self.tolerance and\n       \
+      \                 _num_zeros <= self.OOK_pause + self.tolerance):\n        \
+      \                \n                        if self.print_symbols:\n        \
+      \                    #print(f\"^\")\n                            pass\n\n  \
+      \                      # marking detected OOK_pause\n                      \
+      \  key = pmt.intern(\" \")\n                        value = pmt.intern(\"^\"\
+      )\n                        self.add_item_tag(0,\n                          \
+      \  self.nitems_written(0) + idx,\n                            key,\n       \
+      \                     value\n                        )\n\n                 \
+      \   # detect ASCII pause\n                    elif (_num_zeros >= self.ASCII_pause\
+      \ - self.tolerance and\n                          _num_zeros <= self.ASCII_pause\
+      \ + self.tolerance):\n                        \n                        if self.print_symbols:\n\
+      \                            print(\"~\")\n\n                        # for further\
+      \ processing outside this block\n                        self.message_port_pub(pmt.intern(\"\
+      msg_out\"), pmt.intern(\" \"))\n\n                        # marking detected\
+      \ ASCII pause\n                        key = pmt.intern(\" \")\n           \
+      \             value = pmt.intern(\"~\")\n                        self.add_item_tag(0,\n\
       \                            self.nitems_written(0) + idx,\n               \
       \             key,\n                            value\n                    \
-      \    )\n\n                    # detect ASCII pause\n                    elif\
-      \ (_num_zeros >= self.ASCII_pause - self.tolerance and\n                   \
-      \     _num_zeros <= self.ASCII_pause + self.tolerance):\n                  \
-      \      \n                        if self.verbose:\n                        \
-      \    print(\"\")\n                            #print(f\"symbol end\")\n\n  \
-      \                      self.message_port_pub(pmt.intern(\"msg_out\"), pmt.intern(\"\
-      \ \"))\n\n                        # marking detected ASCII pause\n         \
-      \               key = pmt.intern(\" \")\n                        value = pmt.intern(\"\
-      ASCII_pause\")\n                        self.add_item_tag(0,\n             \
-      \               self.nitems_written(0) + idx,\n                            key,\n\
-      \                            value\n                        )\n\n          \
-      \          # detect break pause\n                    elif (_num_zeros >= self.break_pause\
-      \ - self.tolerance):\n                        \n                        if self.verbose:\n\
-      \                            print(\"\")\n                            #print(f\"\
-      symbol end, break\")\n                            \n                       \
-      \ self.message_port_pub(pmt.intern(\"msg_out\"), pmt.intern(\";\"))\n      \
-      \                  \n                        # marking detected break pause\n\
-      \                        key = pmt.intern(\" \")\n                        value\
-      \ = pmt.intern(\"break_pause\")\n                        self.add_item_tag(0,\n\
-      \                            self.nitems_written(0) + idx,\n               \
-      \             key,\n                            value\n                    \
-      \    )\n\n                    _num_zeros = 0\n            \n            # status:\
-      \ currently on\n            elif _sync == 1:\n                # status changes\n\
-      \                if ch == 0:\n                    _sync = 0\n              \
-      \      # WARN: this print is very slow, and may cause GNURadio to crash\n  \
-      \                  #print(f\"sync 0: #ones: {_num_ones}\")\n               \
-      \     \n                    # detect short symbol\n                    if (_num_ones\
+      \    )\n\n                    # detect break pause\n                    elif\
+      \ (_num_zeros >= self.break_pause - self.tolerance):\n                     \
+      \   \n                        if self.print_symbols:\n                     \
+      \       print(\";\")\n                            #print(f\"symbol end, break\"\
+      )\n                        \n                        # for further processing\
+      \ outside this block \n                        self.message_port_pub(pmt.intern(\"\
+      msg_out\"), pmt.intern(\";\"))\n                        \n                 \
+      \       # marking detected break pause\n                        key = pmt.intern(\"\
+      \ \")\n                        value = pmt.intern(\"\xB0\")\n              \
+      \          self.add_item_tag(0,\n                            self.nitems_written(0)\
+      \ + idx,\n                            key,\n                            value\n\
+      \                        )\n\n                    _num_zeros = 0\n         \
+      \   \n            # status: currently on\n            elif _sync == 1:\n   \
+      \             # status changes\n                if ch == 0:\n              \
+      \      _sync = 0\n                    # WARN: this print is very slow, and may\
+      \ cause GNURadio to crash\n                    if self.print_1duration:\n  \
+      \                      print(f\"#ones: {_num_ones}\")\n                    \n\
+      \                    # detect short symbol\n                    if (_num_ones\
       \ >= self.short_sym - self.tolerance and\n                        _num_ones\
       \ <= self.short_sym + self.tolerance):\n                        \n         \
-      \               if self.verbose:\n                            print(f\".\",\
-      \ end=\"\")\n                        self.message_port_pub(pmt.intern(\"msg_out\"\
-      ), pmt.intern(\".\"))\n\n                        # marking detected short symbol\n\
-      \                        key = pmt.intern(\".\")\n                        value\
-      \ = pmt.intern(\".\")\n                        self.add_item_tag(0,\n      \
-      \                      self.nitems_written(0) + idx,\n                     \
-      \       key,\n                            value\n                        )\n\
-      \n                    # detect long symbol\n                    elif (_num_ones\
-      \ >= self.long_sym - self.tolerance and\n                          _num_ones\
-      \ <= self.long_sym + self.tolerance):\n                        \n          \
-      \              if self.verbose:\n                            print(f\"_\", end=\"\
-      \")\n                        self.message_port_pub(pmt.intern(\"msg_out\"),\
-      \ pmt.intern(\"_\"))\n\n                        # marking detected long symbol\n\
-      \                        key = pmt.intern(\"_\")\n                        value\
-      \ = pmt.intern(\"_\")\n                        self.add_item_tag(0,\n      \
-      \                      self.nitems_written(0) + idx,\n                     \
-      \       key,\n                            value\n                        )\n\
-      \n                    _num_ones = 0\n\n                # status remains identical\n\
-      \                elif ch == 1:\n                    pass\n            \n   \
-      \         # reset zeros during longer pauses\n            if _num_zeros >= 200000:\n\
-      \                _sync = -1\n                _num_zeros = 0\n              \
-      \  _num_ones = 0\n\n            # this should not happen anyway\n          \
-      \  if _num_ones >= 200000:\n                _sync = -1\n                _num_zeros\
-      \ = 0\n                _num_ones = 0\n\n        # simply pass through original\
-      \ signal with tags attached\n        output_items[0][:] = input_items[0]\n\n\
-      \        return len(output_items[0])\n"
+      \               if self.print_symbols:\n                            print(f\"\
+      .\", end=\"\")\n                        \n                        # for further\
+      \ processing outside this block\n                        self.message_port_pub(pmt.intern(\"\
+      msg_out\"), pmt.intern(\".\"))\n\n                        # marking detected\
+      \ short symbol\n                        key = pmt.intern(\".\")\n          \
+      \              value = pmt.intern(\".\")\n                        self.add_item_tag(0,\n\
+      \                            self.nitems_written(0) + idx,\n               \
+      \             key,\n                            value\n                    \
+      \    )\n\n                    # detect long symbol\n                    elif\
+      \ (_num_ones >= self.long_sym - self.tolerance and\n                       \
+      \   _num_ones <= self.long_sym + self.tolerance):\n                        \n\
+      \                        if self.print_symbols:\n                          \
+      \  print(f\"_\", end=\"\")\n\n                        # for further processing\
+      \ outside this block\n                        self.message_port_pub(pmt.intern(\"\
+      msg_out\"), pmt.intern(\"_\"))\n\n                        # marking detected\
+      \ long symbol\n                        key = pmt.intern(\"_\")\n           \
+      \             value = pmt.intern(\"_\")\n                        self.add_item_tag(0,\n\
+      \                            self.nitems_written(0) + idx,\n               \
+      \             key,\n                            value\n                    \
+      \    )\n\n                    _num_ones = 0\n\n                # status remains\
+      \ identical\n                elif ch == 1:\n                    pass\n     \
+      \       \n            # reset zeros during longer pauses\n            if _num_zeros\
+      \ >= 200000:\n                _sync = -1\n                _num_zeros = 0\n \
+      \               _num_ones = 0\n\n            # this should not happen anyway\n\
+      \            if _num_ones >= 200000:\n                _sync = -1\n         \
+      \       _num_zeros = 0\n                _num_ones = 0\n\n        # simply pass\
+      \ through original signal with tags attached\n        output_items[0][:] = input_items[0]\n\
+      \n        return len(output_items[0])\n"
     affinity: ''
     alias: ''
-    break_pause: '930'
+    break_pause: word_space
     comment: 'determines the morse
 
       symbols ".", "_", and
@@ -421,23 +891,25 @@ blocks:
       symbol/word breaks
 
       with a certain tolerance'
-    debug: 'False'
-    long_sym: '700'
+    long_sym: letter_space
     maxoutbuf: '0'
     minoutbuf: '0'
-    short_sym: '240'
-    tolerance: '150'
-    verbose: 'True'
+    print_0duration: print_0duration
+    print_1duration: print_1duration
+    print_symbols: print_symbols
+    short_sym: element_space
+    tolerance: tolerance
   states:
     _io_cache: ('Morse Decoder', 'blk', [('OOK_pause', '270'), ('ASCII_pause', '825'),
       ('short_sym', '280'), ('long_sym', '870'), ('break_pause', '1200'), ('tolerance',
-      '40'), ('debug', 'False'), ('verbose', 'True')], [('0', 'float', 1)], [('0',
-      'float', 1), ('msg_out', 'message', 1)], '', ['ASCII_pause', 'OOK_pause', 'break_pause',
-      'debug', 'long_sym', 'short_sym', 'tolerance', 'verbose'])
+      '40'), ('print_symbols', 'True'), ('print_1duration', 'False'), ('print_0duration',
+      'False')], [('0', 'float', 1)], [('0', 'float', 1), ('msg_out', 'message', 1)],
+      '', ['ASCII_pause', 'OOK_pause', 'break_pause', 'long_sym', 'print_0duration',
+      'print_1duration', 'print_symbols', 'short_sym', 'tolerance'])
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 772.0]
+    coordinate: [488, 1060.0]
     rotation: 0
     state: enabled
 - name: note_0
@@ -466,7 +938,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1120, 12.0]
+    coordinate: [2152, 20.0]
     rotation: 0
     state: true
 - name: note_1
@@ -482,53 +954,26 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [936, 12.0]
+    coordinate: [1960, 20.0]
     rotation: 0
     state: true
-- name: note_1_0
+- name: note_1_1
   id: note
   parameters:
     alias: ''
-    comment: '270
-
-      825
-
-      270
-
-      825
-
-      1200
-
-      150'
-    note: slower Morse parameters
+    comment: "(Wikipedia)\nInternational Morse code is composed of five elements:\u200A\
+      \n\n * short mark, dot or dit or ( \u2584 ) or (.): \"dit duration\" is one\
+      \ time unit long = 1 tau\n * long mark, dash or dah or ( \u2584\u2584\u2584\
+      \ ) or (_): three time units long = 3 tau\n * element-space (^) between the\
+      \ marks within a character: one time unit long = 1 tau\n * letter-space: three\
+      \ time units long = 3 tau\n * word-space: seven time units long (formerly five)\
+      \ = 7 tau"
+    note: permitted Morse frequencies
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 1004.0]
-    rotation: 0
-    state: true
-- name: note_1_0_0
-  id: note
-  parameters:
-    alias: ''
-    comment: '240
-
-      650
-
-      240
-
-      700
-
-      930
-
-      150'
-    note: faster Morse parameters
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [896, 1140.0]
+    coordinate: [1336, 276.0]
     rotation: 0
     state: true
 - name: osmosdr_source_0
@@ -568,8 +1013,8 @@ blocks:
     ant7: ''
     ant8: ''
     ant9: ''
-    args: ''
-    bb_gain0: '20'
+    args: airspyhf=0
+    bb_gain0: '30'
     bb_gain1: '20'
     bb_gain10: '20'
     bb_gain11: '20'
@@ -601,7 +1046,7 @@ blocks:
     bb_gain7: '20'
     bb_gain8: '20'
     bb_gain9: '20'
-    bw0: '10000'
+    bw0: '2000'
     bw1: '0'
     bw10: '0'
     bw11: '0'
@@ -706,7 +1151,7 @@ blocks:
     dc_offset_mode7: '0'
     dc_offset_mode8: '0'
     dc_offset_mode9: '0'
-    freq0: freq_morse + freq_shift_corr
+    freq0: band_freq + freq_morse + freq_shift_corr
     freq1: 100e6
     freq10: 100e6
     freq11: 100e6
@@ -738,7 +1183,7 @@ blocks:
     freq7: 100e6
     freq8: 100e6
     freq9: 100e6
-    gain0: '5'
+    gain0: '30'
     gain1: '10'
     gain10: '10'
     gain11: '10'
@@ -802,7 +1247,7 @@ blocks:
     gain_mode7: 'False'
     gain_mode8: 'False'
     gain_mode9: 'False'
-    if_gain0: '20'
+    if_gain0: '30'
     if_gain1: '20'
     if_gain10: '20'
     if_gain11: '20'
@@ -834,7 +1279,7 @@ blocks:
     if_gain7: '20'
     if_gain8: '20'
     if_gain9: '20'
-    iq_balance_mode0: '0'
+    iq_balance_mode0: '2'
     iq_balance_mode1: '0'
     iq_balance_mode10: '0'
     iq_balance_mode11: '0'
@@ -871,7 +1316,7 @@ blocks:
     nchan: '1'
     num_mboards: '1'
     sample_rate: samp_rate
-    sync: none
+    sync: sync
     time_source0: ''
     time_source1: ''
     time_source2: ''
@@ -885,9 +1330,31 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [64, 364.0]
+    coordinate: [80, 452.0]
     rotation: 0
     state: enabled
+- name: qtgui_edit_box_msg_0
+  id: qtgui_edit_box_msg
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gui_hint: (1,0,1,3)
+    is_pair: 'True'
+    is_static: 'True'
+    key: freq
+    label: CW band entry frequency
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: int
+    value: '7000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 12.0]
+    rotation: 0
+    state: true
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -908,26 +1375,26 @@ blocks:
     color1: blue
     color10: dark blue
     color2: red
-    color3: green
+    color3: black
     color4: black
     color5: cyan
     color6: magenta
     color7: yellow
     color8: dark red
     color9: dark green
-    comment: 'to adjust the
+    comment: 'to view the adjustded
 
-      thresholder'
+      gain, thresholder and tau'
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'False'
-    gui_hint: ''
-    label1: received signal
+    gui_hint: (12,0,3,3)
+    label1: envelope signal
     label10: Signal 10
     label2: threshold signal
-    label3: Signal 3
-    label4: Signal 4
-    label5: Signal 5
+    label3: high threshold
+    label4: low threshold
+    label5: ''
     label6: Signal 6
     label7: Signal 7
     label8: Signal 8
@@ -944,7 +1411,7 @@ blocks:
     marker8: '-1'
     marker9: '-1'
     name: '""'
-    nconnections: '2'
+    nconnections: '4'
     size: int(samp_rate/8)
     srate: int(samp_rate/32)
     stemplot: 'False'
@@ -965,7 +1432,7 @@ blocks:
     tr_slope: qtgui.TRIG_SLOPE_POS
     tr_tag: '""'
     type: float
-    update_time: '0.10'
+    update_time: '0.025'
     width1: '1'
     width10: '1'
     width2: '1'
@@ -984,7 +1451,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 716.0]
+    coordinate: [760, 1080.0]
     rotation: 0
     state: true
 - name: qtgui_waterfall_sink_x_0
@@ -1022,10 +1489,10 @@ blocks:
 
       signals'
     fc: '0'
-    fftsize: '1024'
+    fftsize: '512'
     freqhalf: 'True'
-    grid: 'False'
-    gui_hint: ''
+    grid: 'True'
+    gui_hint: (5,0,5,3)
     int_max: '10'
     int_min: '-140'
     label1: ''
@@ -1041,17 +1508,17 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: Morse-Waterfall
     nconnections: '1'
     showports: 'False'
     type: complex
-    update_time: '0.10'
+    update_time: '0.025'
     wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 260.0]
+    coordinate: [408, 340.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0_0
@@ -1073,7 +1540,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [456, 692.0]
+    coordinate: [496, 860.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_0
@@ -1086,7 +1553,20 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 452.0]
+    coordinate: [1112, 548.0]
+    rotation: 0
+    state: true
+- name: virtual_sink_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 884.0]
     rotation: 0
     state: true
 - name: virtual_source_0
@@ -1099,7 +1579,20 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 716.0]
+    coordinate: [80, 836.0]
+    rotation: 0
+    state: true
+- name: virtual_source_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 1076.0]
     rotation: 0
     state: true
 - name: zeromq_push_msg_sink_1
@@ -1121,25 +1614,34 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 836.0]
+    coordinate: [760, 1244.0]
     rotation: 0
     state: enabled
 
 connections:
+- [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '2']
+- [analog_sig_source_x_0_0, '0', qtgui_time_sink_x_0, '3']
 - [analog_simple_squelch_cc_0_0, '0', blocks_multiply_const_xx_0, '0']
 - [band_pass_filter_0, '0', analog_simple_squelch_cc_0_0, '0']
-- [blocks_complex_to_mag_squared_0, '0', blocks_multiply_const_xx_0_0, '0']
 - [blocks_complex_to_mag_squared_0, '0', rational_resampler_xxx_0_0, '0']
+- [blocks_complex_to_real_0, '0', blocks_multiply_const_xx_0_0, '0']
 - [blocks_multiply_const_xx_0, '0', virtual_sink_0, '0']
 - [blocks_multiply_const_xx_0_0, '0', audio_sink_0, '0']
-- [blocks_threshold_ff_0, '0', epy_block_0_0, '0']
-- [epy_block_0_0, '0', qtgui_time_sink_x_0, '1']
-- [epy_block_0_0, msg_out, zeromq_push_msg_sink_1, in]
+- [blocks_threshold_ff_0, '0', epy_block_0_0_0, '0']
+- [check_box_print_0duration, state, blocks_msgpair_to_var_0_0_0, inpair]
+- [checkbox_print_1duration, state, blocks_msgpair_to_var_0_0, inpair]
+- [checkbox_print_symbols, state, blocks_msgpair_to_var_0, inpair]
+- [epy_block_0, '0', virtual_sink_1, '0']
+- [epy_block_0_0_0, '0', qtgui_time_sink_x_0, '1']
+- [epy_block_0_0_0, msg_out, zeromq_push_msg_sink_1, in]
 - [osmosdr_source_0, '0', band_pass_filter_0, '0']
 - [osmosdr_source_0, '0', qtgui_waterfall_sink_x_0, '0']
-- [rational_resampler_xxx_0_0, '0', blocks_threshold_ff_0, '0']
-- [rational_resampler_xxx_0_0, '0', qtgui_time_sink_x_0, '0']
+- [qtgui_edit_box_msg_0, msg, blocks_msgpair_to_var_0_1, inpair]
+- [rational_resampler_xxx_0_0, '0', epy_block_0, '0']
 - [virtual_source_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [virtual_source_0, '0', blocks_complex_to_real_0, '0']
+- [virtual_source_1, '0', blocks_threshold_ff_0, '0']
+- [virtual_source_1, '0', qtgui_time_sink_x_0, '0']
 
 metadata:
   file_format: 1
