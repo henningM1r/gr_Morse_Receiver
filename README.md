@@ -14,6 +14,7 @@ A supplementary tool is provided in the `python` folder:
 ### Requirements
 The Morse receiver was tested with:
 + gnuradio & GNURadio Companion 3.10.1.1 (Linux)
++ Radioconda 2023.02.24 & gnuradio & GNURadio Companion 3.10.5.1 (Windows)
 + Python 3.10.6
     + PyQt5 5.15.7
     + pyzmq 22.2.1
@@ -63,5 +64,4 @@ The Morse receiver was tested with:
 + This project has __not__ been tested with other antennas
 + A Low Noise Amplifier (LNA) is not needed.
 + Additional resilience of the Decoder has __not__ been implemented yet.
-+ This project might also run fine under Windows, but it was not tested yet.
 + The maintainer is only a hobbyist, __not__ a Morse professional ;-).
