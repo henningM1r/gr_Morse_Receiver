@@ -50,20 +50,26 @@ morse_dict = {
     "+": "._._.",
     "-": "_...._",
     "=": "_..._",
+    "*": "_.._", # multiplication
+    "%": "_.._._____",
+    "\"": "._.._.",
+    "\'": ".____.",
     "@": ".__._.",
-    "/": "______",
+    "$": "..._.._",
+    "/": "_.._.",
     "(": "_.__.",
     ")": "_.__._",
     "_": "..__._",
     "&": "._...",
     "CH": "____",
-    "KA": "_._._",   # begin
-    "BT": "_..._",   # pause / separation
-    "AR": "._._.",   # end
-    "VE": "..._.",   # understood
-    "SK": "..._._.", # traffic end
-    "AS": "._...",   # wait
-    "KN": "_.__.",   # send to specific station
+    "start of work": "_._._",
+    "new line": "._._",
+    "invitation to transmit": "_._",
+    "understood": "..._.",
+    "end of work": "..._._.",
+    "wait": "._...",   # wait
+    "clear": "_._.._..",
+    "invite specific station to transimit": "_.__.",
 }
 
 morse_swap_dict = {v: k for k, v in morse_dict.items()}
