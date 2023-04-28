@@ -795,8 +795,8 @@ blocks:
       \n    def __init__(self, OOK_pause=270, ASCII_pause=825, short_sym=280, long_sym=870,\
       \ break_pause=1200, tolerance=40, print_symbols=True, print_1duration=False,\
       \ print_0duration=False):\n\n        gr.sync_block.__init__(\n            self,\n\
-      \            name='Morse Decoder',\n            in_sig=[np.float32],\n     \
-      \       out_sig=[np.float32]\n        )\n        \n        # durations of the\
+      \            name='Morse Detector',\n            in_sig=[np.float32],\n    \
+      \        out_sig=[np.float32]\n        )\n        \n        # durations of the\
       \ symbols and pauses\n        self.tolerance   = tolerance\n        self.OOK_pause\
       \   = OOK_pause\n        self.ASCII_pause = ASCII_pause\n        self.short_sym\
       \   = short_sym\n        self.long_sym    = long_sym\n        self.break_pause\
@@ -909,7 +909,7 @@ blocks:
     short_sym: element_space
     tolerance: tolerance
   states:
-    _io_cache: ('Morse Decoder', 'blk', [('OOK_pause', '270'), ('ASCII_pause', '825'),
+    _io_cache: ('Morse Detector', 'blk', [('OOK_pause', '270'), ('ASCII_pause', '825'),
       ('short_sym', '280'), ('long_sym', '870'), ('break_pause', '1200'), ('tolerance',
       '40'), ('print_symbols', 'True'), ('print_1duration', 'False'), ('print_0duration',
       'False')], [('0', 'float', 1)], [('0', 'float', 1), ('msg_out', 'message', 1)],

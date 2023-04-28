@@ -28,7 +28,7 @@ class blk(gr.sync_block):
 
         gr.sync_block.__init__(
             self,
-            name='Morse Decoder',
+            name='Morse Detector',
             in_sig=[np.float32],
             out_sig=[np.float32]
         )
