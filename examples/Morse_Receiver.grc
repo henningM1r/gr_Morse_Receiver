@@ -132,7 +132,7 @@ blocks:
     start: '80'
     step: '1'
     stop: '700'
-    value: '270'
+    value: '260'
     widget: counter_slider
   states:
     bus_sink: false
@@ -280,7 +280,7 @@ blocks:
     start: '200'
     step: '1'
     stop: '1600'
-    value: 270*3
+    value: '725'
     widget: counter_slider
   states:
     bus_sink: false
@@ -322,7 +322,7 @@ blocks:
     start: '200'
     step: '1'
     stop: '1600'
-    value: 270*3
+    value: '725'
     widget: counter_slider
   states:
     bus_sink: false
@@ -414,7 +414,7 @@ blocks:
     start: '80'
     step: '1'
     stop: '700'
-    value: '270'
+    value: '260'
     widget: counter_slider
   states:
     bus_sink: false
@@ -435,7 +435,7 @@ blocks:
     start: '50'
     step: '1'
     stop: '200'
-    value: '100'
+    value: '130'
     widget: counter_slider
   states:
     bus_sink: false
@@ -473,7 +473,7 @@ blocks:
     start: '800'
     step: '1'
     stop: '8000'
-    value: 270*7
+    value: '1445'
     widget: counter_slider
   states:
     bus_sink: false
@@ -740,24 +740,24 @@ blocks:
 - name: epy_block_0
   id: epy_block
   parameters:
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\n\n\n\nclass blk(gr.sync_block):\n\n    def __init__(self,\
-      \ threshold=0.0, mode=0, coeff=0.15):\n        gr.sync_block.__init__(\n   \
-      \         self,\n            name='Envelope Detector',\n            in_sig=[np.float32],\n\
-      \            out_sig=[np.float32]\n        )\n        self.ry = 0\n        self.threshold\
-      \ = threshold\n        self.mode = mode\n        self.coeff = coeff\n\n\n  \
-      \  def work(self, input_items, output_items):\n        output_items[0][:] =\
-      \ input_items[0]\n\n        buf = [0] * len(input_items[0])\n        a0 = self.coeff\n\
-      \        b1 = 1 - a0\n\n        for i in range(0, len(input_items[0])):\n  \
-      \          if self.mode == 1:\n                buf[i] = abs(input_items[0][i])\n\
-      \            else:\n                if input_items[0][i] > self.threshold:\n\
-      \                    buf[i] = input_items[0][i]\n                else:\n   \
-      \                 buf[i] = 0\n\n        for i in range(0, len(input_items[0])):\n\
+    _source_code: "\nimport numpy as np\nfrom gnuradio import gr\n\n\n\"\"\"\nEmbedded\
+      \ Python Blocks:\n\nEach time this file is saved, GRC will instantiate the first\
+      \ class it finds\nto get ports and parameters of your block. The arguments to\
+      \ __init__  will\nbe the parameters. All of them are required to have default\
+      \ values!\n\"\"\"\n\n\nclass blk(gr.sync_block):\n\n    def __init__(self, threshold=0.0,\
+      \ mode=0, coeff=0.15):\n        gr.sync_block.__init__(\n            self,\n\
+      \            name='Envelope Detector',\n            in_sig=[np.float32],\n \
+      \           out_sig=[np.float32]\n        )\n        self.ry = 0\n        self.threshold\
+      \ = threshold\n        self.mode = mode\n        self.coeff = coeff\n\n    def\
+      \ work(self, input_items, output_items):\n        output_items[0][:] = input_items[0]\n\
+      \n        buf = [0] * len(input_items[0])\n        a0 = self.coeff\n       \
+      \ b1 = 1 - a0\n\n        for i in range(0, len(input_items[0])):\n         \
+      \   if self.mode == 1:\n                buf[i] = abs(input_items[0][i])\n  \
+      \          else:\n                if input_items[0][i] > self.threshold:\n \
+      \                   buf[i] = input_items[0][i]\n                else:\n    \
+      \                buf[i] = 0\n\n        for i in range(0, len(input_items[0])):\n\
       \            if i == 0:\n                output_items[0][i] = a0*buf[i] + b1*self.ry\n\
-      \            else: # i >= 1 \n                output_items[0][i] = a0*buf[i]\
+      \            else:   # i >= 1\n                output_items[0][i] = a0*buf[i]\
       \ + b1*output_items[0][i-1]\n\n        i = len(output_items[0]) - 1\n      \
       \  self.ry = output_items[0][i]\n\n        return len(output_items[0])\n"
     affinity: ''
@@ -785,111 +785,108 @@ blocks:
   parameters:
     ASCII_pause: long_mark
     OOK_pause: short_mark
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\nimport pmt\n\n\n\n# counts number of ones of current\
-      \ status\n_num_ones  = 0\n\n# counts number of zeros of current status\n_num_zeros\
-      \ = 0\n\n# stores current on/off status\n_sync = -1\n\n\nclass blk(gr.sync_block):\n\
-      \n    def __init__(self, OOK_pause=270, ASCII_pause=825, short_sym=280, long_sym=870,\
-      \ break_pause=1200, tolerance=40, print_symbols=True, print_1duration=False,\
-      \ print_0duration=False):\n\n        gr.sync_block.__init__(\n            self,\n\
-      \            name='Morse Detector',\n            in_sig=[np.float32],\n    \
-      \        out_sig=[np.float32]\n        )\n        \n        # durations of the\
-      \ symbols and pauses\n        self.tolerance   = tolerance\n        self.OOK_pause\
-      \   = OOK_pause\n        self.ASCII_pause = ASCII_pause\n        self.short_sym\
-      \   = short_sym\n        self.long_sym    = long_sym\n        self.break_pause\
-      \ = break_pause\n\n        # verbose output\n        self.print_symbols   =\
-      \ print_symbols\n        self.print_1duration = print_1duration\n        self.print_0duration\
-      \ = print_0duration\n\n        if self.print_symbols == True:\n            print(\"\
-      short mark (.): \", self.short_sym)\n            print(\"long mark (_): \",\
-      \ self.long_sym)\n            print(\"element-space (^)\", self.OOK_pause)\n\
-      \            print(\"letter-space (~): \", self.ASCII_pause)\n            print(\"\
-      word-space (;): \", self.break_pause)\n            print(\"tolerance: \", self.tolerance)\n\
-      \            \n\n        # output message\n        self.message_port_register_out(pmt.intern('msg_out'))\n\
-      \        \n\n    def work(self, input_items, output_items):\n        global\
-      \ _num_zeros\n        global _num_ones\n        global _sync\n\n        inp\
-      \ = input_items[0]\n\n        for idx in range(len(inp)):\n            ch =\
-      \ inp[idx]\n\n            if ch == 1:\n                _num_ones += 1\n\n  \
-      \          else: # ch == 0\n                _num_zeros += 1\n\n            #\
-      \ out of sync status\n            if _sync == -1:\n                _num_zeros\
-      \ = 0\n                _num_ones = 0\n\n                if ch == 0:\n      \
-      \              _sync = 0\n                \n                elif ch == 1:\n\
-      \                    _sync = 1\n            \n            # status: currently\
+    _source_code: "\nimport numpy as np\nfrom gnuradio import gr\nimport pmt\n\n\"\
+      \"\"\nEmbedded Python Blocks:\n\nEach time this file is saved, GRC will instantiate\
+      \ the first class it finds\nto get ports and parameters of your block. The arguments\
+      \ to __init__  will\nbe the parameters. All of them are required to have default\
+      \ values!\n\"\"\"\n\n\n# counts number of ones of current status\n_num_ones\
+      \ = 0\n\n# counts number of zeros of current status\n_num_zeros = 0\n\n# stores\
+      \ current on/off status\n_sync = -1\n\n\nclass blk(gr.sync_block):\n\n    def\
+      \ __init__(self, OOK_pause=270, ASCII_pause=825, short_sym=280,\n          \
+      \       long_sym=870, break_pause=1200, tolerance=40,\n                 print_symbols=True,\
+      \ print_1duration=False,\n                 print_0duration=False):\n\n     \
+      \   gr.sync_block.__init__(\n            self,\n            name='Morse Detector',\n\
+      \            in_sig=[np.float32],\n            out_sig=[np.float32]\n      \
+      \  )\n\n        # durations of the symbols and pauses\n        self.tolerance\
+      \ = tolerance\n        self.OOK_pause = OOK_pause\n        self.ASCII_pause\
+      \ = ASCII_pause\n        self.short_sym = short_sym\n        self.long_sym =\
+      \ long_sym\n        self.break_pause = break_pause\n\n        # verbose output\n\
+      \        self.print_symbols = print_symbols\n        self.print_1duration =\
+      \ print_1duration\n        self.print_0duration = print_0duration\n\n      \
+      \  if self.print_symbols is True:\n            print(\"short mark (.): \", self.short_sym)\n\
+      \            print(\"long mark (_): \", self.long_sym)\n            print(\"\
+      element-space (^)\", self.OOK_pause)\n            print(\"letter-space (~):\
+      \ \", self.ASCII_pause)\n            print(\"word-space (;): \", self.break_pause)\n\
+      \            print(\"tolerance: \", self.tolerance)\n\n        # output message\n\
+      \        self.message_port_register_out(pmt.intern('msg_out'))\n\n    def work(self,\
+      \ input_items, output_items):\n        global _num_zeros\n        global _num_ones\n\
+      \        global _sync\n\n        inp = input_items[0]\n\n        for idx in\
+      \ range(len(inp)):\n            ch = inp[idx]\n\n            if ch == 1:\n \
+      \               _num_ones += 1\n\n            else:   # ch == 0\n          \
+      \      _num_zeros += 1\n\n            # out of sync status\n            if _sync\
+      \ == -1:\n                _num_zeros = 0\n                _num_ones = 0\n\n\
+      \                if ch == 0:\n                    _sync = 0\n\n            \
+      \    elif ch == 1:\n                    _sync = 1\n\n            # status: currently\
       \ off\n            elif _sync == 0:\n                # status remains identical\n\
-      \                if ch == 0:\n                    pass\n                \n \
-      \               elif ch == 1:\n                    _sync = 1\n             \
-      \       # WARN: this print is very slow, and may cause GNURadio to crash\n \
-      \                   if self.print_0duration:\n                        print(f\"\
-      #zeros: {_num_zeros}\")\n\n                    # detect OOK pause\n        \
-      \            if (_num_zeros >= self.OOK_pause - self.tolerance and\n       \
-      \                 _num_zeros <= self.OOK_pause + self.tolerance):\n        \
-      \                \n                        if self.print_symbols:\n        \
-      \                    #print(f\"^\")\n                            pass\n\n  \
-      \                      # marking detected OOK_pause\n                      \
-      \  key = pmt.intern(\" \")\n                        value = pmt.intern(\"^\"\
-      )\n                        self.add_item_tag(0,\n                          \
-      \  self.nitems_written(0) + idx,\n                            key,\n       \
-      \                     value\n                        )\n\n                 \
-      \   # detect ASCII pause\n                    elif (_num_zeros >= self.ASCII_pause\
-      \ - self.tolerance and\n                          _num_zeros <= self.ASCII_pause\
-      \ + self.tolerance):\n                        \n                        if self.print_symbols:\n\
+      \                if ch == 0:\n                    pass\n\n                elif\
+      \ ch == 1:\n                    _sync = 1\n                    if self.print_0duration:\n\
+      \                        print(f\"#zeros: {_num_zeros}\")\n\n              \
+      \      # detect OOK pause\n                    if (_num_zeros >= self.OOK_pause\
+      \ - self.tolerance and\n                            _num_zeros <= self.OOK_pause\
+      \ + self.tolerance):\n\n                        if self.print_symbols:\n   \
+      \                         # print(f\"^\")\n                            pass\n\
+      \n                        # marking detected OOK_pause\n                   \
+      \     key = pmt.intern(\" \")\n                        value = pmt.intern(\"\
+      ^\")\n                        self.add_item_tag(0,\n                       \
+      \                   self.nitems_written(0) + idx,\n                        \
+      \                  key,\n                                          value)\n\n\
+      \                    # detect ASCII pause\n                    elif (_num_zeros\
+      \ >= self.ASCII_pause - self.tolerance and\n                          _num_zeros\
+      \ <= self.ASCII_pause + self.tolerance):\n\n                        if self.print_symbols:\n\
       \                            print(\"~\")\n\n                        # for further\
       \ processing outside this block\n                        self.message_port_pub(pmt.intern(\"\
-      msg_out\"), pmt.intern(\" \"))\n\n                        # marking detected\
-      \ ASCII pause\n                        key = pmt.intern(\" \")\n           \
-      \             value = pmt.intern(\"~\")\n                        self.add_item_tag(0,\n\
-      \                            self.nitems_written(0) + idx,\n               \
-      \             key,\n                            value\n                    \
-      \    )\n\n                    # detect break pause\n                    elif\
-      \ (_num_zeros >= self.break_pause - self.tolerance):\n                     \
-      \   \n                        if self.print_symbols:\n                     \
-      \       print(\";\")\n                            #print(f\"symbol end, break\"\
-      )\n                        \n                        # for further processing\
-      \ outside this block \n                        self.message_port_pub(pmt.intern(\"\
-      msg_out\"), pmt.intern(\";\"))\n                        \n                 \
-      \       # marking detected break pause\n                        key = pmt.intern(\"\
-      \ \")\n                        value = pmt.intern(\"\xB0\")\n              \
-      \          self.add_item_tag(0,\n                            self.nitems_written(0)\
-      \ + idx,\n                            key,\n                            value\n\
-      \                        )\n\n                    _num_zeros = 0\n         \
-      \   \n            # status: currently on\n            elif _sync == 1:\n   \
-      \             # status changes\n                if ch == 0:\n              \
-      \      _sync = 0\n                    # WARN: this print is very slow, and may\
-      \ cause GNURadio to crash\n                    if self.print_1duration:\n  \
-      \                      print(f\"#ones: {_num_ones}\")\n                    \n\
-      \                    # detect short symbol\n                    if (_num_ones\
-      \ >= self.short_sym - self.tolerance and\n                        _num_ones\
-      \ <= self.short_sym + self.tolerance):\n                        \n         \
-      \               if self.print_symbols:\n                            print(f\"\
-      .\", end=\"\")\n                        \n                        # for further\
-      \ processing outside this block\n                        self.message_port_pub(pmt.intern(\"\
-      msg_out\"), pmt.intern(\".\"))\n\n                        # marking detected\
-      \ short symbol\n                        key = pmt.intern(\".\")\n          \
-      \              value = pmt.intern(\".\")\n                        self.add_item_tag(0,\n\
-      \                            self.nitems_written(0) + idx,\n               \
-      \             key,\n                            value\n                    \
-      \    )\n\n                    # detect long symbol\n                    elif\
-      \ (_num_ones >= self.long_sym - self.tolerance and\n                       \
-      \   _num_ones <= self.long_sym + self.tolerance):\n                        \n\
-      \                        if self.print_symbols:\n                          \
-      \  print(f\"_\", end=\"\")\n\n                        # for further processing\
-      \ outside this block\n                        self.message_port_pub(pmt.intern(\"\
-      msg_out\"), pmt.intern(\"_\"))\n\n                        # marking detected\
-      \ long symbol\n                        key = pmt.intern(\"_\")\n           \
-      \             value = pmt.intern(\"_\")\n                        self.add_item_tag(0,\n\
-      \                            self.nitems_written(0) + idx,\n               \
-      \             key,\n                            value\n                    \
-      \    )\n\n                    _num_ones = 0\n\n                # status remains\
-      \ identical\n                elif ch == 1:\n                    pass\n     \
-      \       \n            # reset zeros during longer pauses\n            if _num_zeros\
+      msg_out\"),\n                                              pmt.intern(\" \"\
+      ))\n\n                        # marking detected ASCII pause\n             \
+      \           key = pmt.intern(\" \")\n                        value = pmt.intern(\"\
+      ~\")\n                        self.add_item_tag(0,\n                       \
+      \                   self.nitems_written(0) + idx,\n                        \
+      \                  key,\n                                          value)\n\n\
+      \                    # detect break pause\n                    elif (_num_zeros\
+      \ >= self.break_pause - self.tolerance):\n\n                        if self.print_symbols:\n\
+      \                            print(\";\")\n                            # print(f\"\
+      symbol end, break\")\n\n                        # for further processing outside\
+      \ this block\n                        self.message_port_pub(pmt.intern(\"msg_out\"\
+      ),\n                                              pmt.intern(\";\"))\n\n   \
+      \                     # marking detected break pause\n                     \
+      \   key = pmt.intern(\" \")\n                        value = pmt.intern(\"\xB0\
+      \")\n                        self.add_item_tag(0,\n                        \
+      \                  self.nitems_written(0) + idx,\n                         \
+      \                 key,\n                                          value)\n\n\
+      \                    _num_zeros = 0\n\n            # status: currently on\n\
+      \            elif _sync == 1:\n                # status changes\n          \
+      \      if ch == 0:\n                    _sync = 0\n                    if self.print_1duration:\n\
+      \                        print(f\"#ones: {_num_ones}\")\n\n                \
+      \    # detect short symbol\n                    if (_num_ones >= self.short_sym\
+      \ - self.tolerance and\n                            _num_ones <= self.short_sym\
+      \ + self.tolerance):\n\n                        if self.print_symbols:\n   \
+      \                         print(\".\", end=\"\")\n\n                       \
+      \ # for further processing outside this block\n                        self.message_port_pub(pmt.intern(\"\
+      msg_out\"),\n                                              pmt.intern(\".\"\
+      ))\n\n                        # marking detected short symbol\n            \
+      \            key = pmt.intern(\".\")\n                        value = pmt.intern(\"\
+      .\")\n                        self.add_item_tag(0,\n                       \
+      \                   self.nitems_written(0) + idx,\n                        \
+      \                  key,\n                                          value)\n\n\
+      \                    # detect long symbol\n                    elif (_num_ones\
+      \ >= self.long_sym - self.tolerance and\n                          _num_ones\
+      \ <= self.long_sym + self.tolerance):\n\n                        if self.print_symbols:\n\
+      \                            print(\"_\", end=\"\")\n\n                    \
+      \    # for further processing outside this block\n                        self.message_port_pub(pmt.intern(\"\
+      msg_out\"),\n                                              pmt.intern(\"_\"\
+      ))\n\n                        # marking detected long symbol\n             \
+      \           key = pmt.intern(\"_\")\n                        value = pmt.intern(\"\
+      _\")\n                        self.add_item_tag(0,\n                       \
+      \                   self.nitems_written(0) + idx,\n                        \
+      \                  key,\n                                          value)\n\n\
+      \                    _num_ones = 0\n\n                # status remains identical\n\
+      \                elif ch == 1:\n                    pass\n\n            # reset\
+      \ zeros during longer pauses\n            if _num_zeros >= 200000:\n       \
+      \         _sync = -1\n                _num_zeros = 0\n                _num_ones\
+      \ = 0\n\n            # this should not happen anyway\n            if _num_ones\
       \ >= 200000:\n                _sync = -1\n                _num_zeros = 0\n \
-      \               _num_ones = 0\n\n            # this should not happen anyway\n\
-      \            if _num_ones >= 200000:\n                _sync = -1\n         \
-      \       _num_zeros = 0\n                _num_ones = 0\n\n        # simply pass\
-      \ through original signal with tags attached\n        output_items[0][:] = input_items[0]\n\
-      \n        return len(output_items[0])\n"
+      \               _num_ones = 0\n\n        # simply pass through original signal\
+      \ with tags attached\n        output_items[0][:] = input_items[0]\n\n      \
+      \  return len(output_items[0])\n"
     affinity: ''
     alias: ''
     break_pause: word_space
